@@ -65,7 +65,7 @@
 .skin-purple .main-sidebar,
 .skin-purple .left-side {
   background-color: #6E2B77;
-  background-image: url(../../img/menuback.png);
+  background-image: url(/lotusWEB/resources/img/menuback.png);
 }
 .skin-purple .user-panel > .info,
 .skin-purple .user-panel > .info > a {

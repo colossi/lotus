@@ -13,7 +13,7 @@ public class PeopleServiceBean implements PeopleService {
     /**
      * Default constructor. 
      */
-	@PersistenceContext(name="lotus")
+	@PersistenceContext(name="lotusweb")
 	private EntityManager em;
     public PeopleServiceBean() {
         // TODO Auto-generated constructor stub

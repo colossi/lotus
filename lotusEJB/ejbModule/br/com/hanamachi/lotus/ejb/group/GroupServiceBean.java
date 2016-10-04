@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 
 public class GroupServiceBean implements GroupService{
 
-	@PersistenceContext(name="lotus")
+	@PersistenceContext(name="lotusweb")
 	private EntityManager em;
 	public GroupServiceBean(){
 		
