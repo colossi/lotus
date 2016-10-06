@@ -1,18 +1,15 @@
-package br.com.hanamachi.lotus.ejb.group;
+package br.com.hanamachi.lotus.ejb.loan;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class GroupServiceBean implements GroupService{
+public class LoanServiceBean implements LoanService {
 
 	@PersistenceContext(name="lotusweb")
 	private EntityManager em;
-	public GroupServiceBean(){
-		
-		
-		
+	public LoanServiceBean() {
+		// TODO Auto-generated constructor stub
 	}
-	
 }

@@ -1,18 +1,15 @@
-package br.com.hanamachi.lotus.ejb.group;
+package br.com.hanamachi.lotus.ejb.natural;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class GroupServiceBean implements GroupService{
+public class NaturalServiceBean implements NaturalService {
 
 	@PersistenceContext(name="lotusweb")
 	private EntityManager em;
-	public GroupServiceBean(){
-		
-		
-		
+	public NaturalServiceBean() {
+		// TODO Auto-generated constructor stub
 	}
-	
 }
