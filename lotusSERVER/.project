@@ -3,8 +3,8 @@
 	<name>lotusSERVER</name>
 	<comment></comment>
 	<projects>
-		<project>lotusWEB</project>
 		<project>lotusEJB</project>
+		<project>lotusWEB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
