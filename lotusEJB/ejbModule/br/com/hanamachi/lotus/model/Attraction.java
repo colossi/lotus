@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Attraction {
@@ -14,11 +14,11 @@ public class Attraction {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	@JoinColumn(name="natural_id")
 	private Natural natural;
 	
-	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	@JoinColumn(name="company_id")
 	private Company company;
 	

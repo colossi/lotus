@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Address {
@@ -22,7 +22,7 @@ public class Address {
 
 	private String complement;
 	
-	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	private City city;
 	
 	public Long getId() {

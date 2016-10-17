@@ -3,11 +3,14 @@ package br.com.hanamachi.lotus.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Messages {
@@ -17,9 +20,11 @@ public class Messages {
 	private Long id;
 
 	private String title;
-
+	
+	@Column(length=1000)
 	private String description;
-
+	
+	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date date;
 
 	private int priority;

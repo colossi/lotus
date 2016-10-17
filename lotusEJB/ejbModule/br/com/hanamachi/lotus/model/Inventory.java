@@ -1,5 +1,7 @@
 package br.com.hanamachi.lotus.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ public class Inventory {
 	private long amount;
 	
 	@OneToMany(cascade={CascadeType.ALL})
-	private Item[] item;
+	private Collection<Item> itens;
 
 	public long getId() {
 		return id;
@@ -35,13 +37,14 @@ public class Inventory {
 		this.amount = amount;
 	}
 
-	public Item[] getItem() {
-		return item;
+	public Collection<Item> getItens() {
+		return itens;
 	}
 
-	public void setItem(Item[] item) {
-		this.item = item;
+	public void setItens(Collection<Item> itens) {
+		this.itens = itens;
 	}
+
 
 
 }

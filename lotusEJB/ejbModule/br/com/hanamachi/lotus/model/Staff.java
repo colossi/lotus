@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 public class Staff {
 	
@@ -21,6 +23,7 @@ public class Staff {
 
 	private String nick;
 
+	@Temporal(value=TemporalType.DATE)
 	private Date dateOfBirth;
 
 	private String momName;
@@ -47,7 +50,6 @@ public class Staff {
 	
 	@ManyToMany(cascade={CascadeType.ALL})
 	private List<Group> group = new ArrayList<Group>();
-	
 
 	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	private Login login;
