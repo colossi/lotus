@@ -15,6 +15,10 @@ public abstract class LotusServiceBean<T> {
 
 	private Class<T> entityClass;
 	
+	public LotusServiceBean() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public LotusServiceBean(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
