@@ -14,6 +14,8 @@ public class GroupController {
 	
 	private GroupService groupService;
 	
+	private Group model = new Group();
+	
 	public Collection<Group> findAll() {
 		return groupService.findAll();
 	}

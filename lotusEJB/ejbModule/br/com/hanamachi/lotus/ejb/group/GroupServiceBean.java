@@ -1,5 +1,7 @@
 package br.com.hanamachi.lotus.ejb.group;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +23,12 @@ public class GroupServiceBean extends LotusServiceBean<Group> implements GroupSe
     protected EntityManager getEntityManager() {
         return em;
     }
+	
+	@Override
+	public List<Group> findAll(){
+		return super.findAll();
+	}
+	
 
 	
 }
