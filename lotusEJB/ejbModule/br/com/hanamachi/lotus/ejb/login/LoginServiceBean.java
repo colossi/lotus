@@ -12,4 +12,6 @@ public class LoginServiceBean implements LoginService {
 	public LoginServiceBean() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 }
