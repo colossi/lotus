@@ -2,7 +2,7 @@ package br.com.hanamachi.lotus.model;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="NaturalPeople")
 public class Natural extends People {
 	
 	private String cpf;

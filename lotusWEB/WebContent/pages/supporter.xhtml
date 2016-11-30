@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../template.xhtml">
+	<ui:define name="index-content">
+
+		<h:head>
+			<meta charset="utf-8"></meta>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+			<title>LOTUS - Grupos</title>
+
+			<h:outputScript name="js/pages/supporter.js" />
+			<h:outputStylesheet name="css/pages/supporter.css" />
+
+		</h:head>
+
+		<body>
+
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Apoiador</h1>
+				</section>
+
+				<!-- Main content -->
+
+				<section class="content">
+
+					<h:form id="formtable">
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+						
+
+						<p:commandButton value="Incluir" styleClass="btn btn-primary" id="cbIncluir" update=":form" action="#{crtSupporter.create()}" onsuccess="PF('dlg1').show()" /> 
+						<p:commandButton value="Alterar" styleClass="btn btn-primary" id="cbAlterar" update=":form" onsuccess="PF('dlg1').show()" />
+						<p:commandButton value="Excluir" styleClass="btn btn-primary" id="cbExcluir"	icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+							
+						<p:inputText id="txtBusca" value="#{crtSupporter.searchValue}" />
+						<p:commandButton value="Busca" icon="fa fa-search" id="cbBuscar" action="#{crtSupporter.search()}" update="tabledados" />
+
+
+
+						<p:dataTable value="#{crtSupporter.colSupporters}" selectionMode="single"
+							selection="#{crtSupporter.model}" rowKey="#{grup.id}" var="grup"
+							id="tabledados">
+
+							<p:column>
+								<f:facet name="header">Nome Comercial</f:facet>
+								<h:outputText value="#{grup.company.commercialName}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Razão social</f:facet>
+								<h:outputText value="#{grup.company.corporateName}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">CNPJ</f:facet>
+								<h:outputText value="#{grup.company.cnpj}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Telefone</f:facet>
+								<h:outputText value="#{grup.company.phone}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Celular</f:facet>
+								<h:outputText value="#{grup.company.celphone}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Email</f:facet>
+								<h:outputText value="#{grup.company.email}" />
+							</p:column>
+
+						</p:dataTable>
+
+					</h:form>
+
+					<!--  AQUI OHHHHH -->
+					<p:dialog width="500" height="300" id="detailDialog" modal="true"
+						header="Detalhe do Apoiador" widgetVar="dlg1" appendTo="@(body)">
+						<h:form id="form">
+							<h:panelGrid id="formDetail" columns="2">
+								
+								<h:outputLabel name="lblNome" value="Nome Comercial" />
+								<p:inputText id="txtNome" label="lblNome" value="#{crtSupporter.model.company.commercialName}" />
+								
+								<h:outputLabel name="lblCorporeteName" value="Razão social" />
+								<p:inputText id="txtCorporeteName" label="lblCorporeteName" value="#{crtSupporter.model.company.corporateName}" />
+								
+								<h:outputLabel name="lblCnpj" value="CNPJ" />
+								<p:inputText id="txtCnpj" label="lblCnpj" value="#{crtSupporter.model.company.cnpj}" />
+								
+								<h:outputLabel name="lblPhone" value="Telefone" />
+								<p:inputText id="txtPhone" label="lblPhone" value="#{crtSupporter.model.company.phone}" />
+								
+								<h:outputLabel name="lblCelphone" value="Celular" />
+								<p:inputText id="txtCelphone" label="lblCelphone" value="#{crtSupporter.model.company.celphone}" />
+								
+								<h:outputLabel name="lblEmail" value="Email" />
+								<p:inputText id="txtEmail" label="lblEmail" value="#{crtSupporter.model.company.email}" />
+
+
+								<f:facet name="footer">
+									<p:commandButton value="OK" id="cbOK"
+										action="#{crtSupporter.save()}" update=":formtable:tabledados"
+										onsuccess="PF('dlg1').hide()" />
+									<p:commandButton value="Cancelar" id="cbCancelar"
+										update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+								</f:facet>
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+					<p:dialog width="500" height="50" id="removeDialog" modal="true"
+						header="Confirma Exclusão do registro?" widgetVar="dlgRemove"
+						appendTo="@(body)">
+						<h:form>
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{crtSupporter.remove()}"
+									update=":formtable" value="OK" />
+								<h:commandButton immediate="true" update=":formtable"
+									value="Cancelar" />
+
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+
+				</section>
+				<!-- /.content -->
+			</div>
+
+		</body>
+
+	</ui:define>
+</ui:decorate>
+</html>

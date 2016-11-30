@@ -17,11 +17,11 @@ public class Supporter {
 	private String site;
 
 	private String facebook;
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Natural natural;
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
+	private Natural natural = new Natural();
 	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Company company;
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
+	private Company company = new Company();
 
 	public Long getId() {
 		return id;

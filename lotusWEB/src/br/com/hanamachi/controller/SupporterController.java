@@ -10,55 +10,56 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.hanamachi.lotus.ejb.group.GroupService;
-import br.com.hanamachi.lotus.model.Group;
+import br.com.hanamachi.lotus.ejb.supporter.SupporterService;
+import br.com.hanamachi.lotus.model.Supporter;
 
-@ManagedBean(name="crtGroup")
+@ManagedBean(name="crtSupporter")
 @ViewScoped
-public class GroupController {
+public class SupporterController {
 	@EJB
-	private GroupService groupService;
+	private SupporterService supporterService;
 	
-	private Group model = new Group();
+	private Supporter model = new Supporter();
 	
 	private String searchValue;
 	
-	public Group getModel() {
+	public Supporter getModel() {
 		return model;
 	}
 	
-	private List<Group> colGroups = new ArrayList<Group>();
+	private List<Supporter> colSupporters = new ArrayList<Supporter>();
 	
+
 	@PostConstruct
 	public void init(){
-		colGroups = groupService.findAll();
+		colSupporters = supporterService.findAll();
 	}
 
-	public void setModel(Group model) {
+	public void setModel(Supporter model) {
 		this.model = model;
 	}
 
 
 	public void save(){
-		groupService.save(model);
+		supporterService.save(model);
 		init();
 	}
 	
 	public void create(){
-		model = new Group();
+		model = new Supporter();
 		init();
 	}
 	
 	public void search(){
-		colGroups = groupService.getClienteByDescription(searchValue);
-		if(colGroups.size() == 0){
+		colSupporters = supporterService.getSuporterByDescription(searchValue);
+		if(colSupporters.size() == 0){
 			FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage("ERRO",  "Nenhum registro foi encontrado...") );
 		}
 	}
 	
 	public void remove(){
-		groupService.delete(model);
+		supporterService.delete(model);
 		init();
 	}
 
@@ -70,12 +71,12 @@ public class GroupController {
 		this.searchValue = searchValue;
 	}
 
-	public List<Group> getColGroups() {
-		return colGroups;
+	public List<Supporter> getColSupporters() {
+		return colSupporters;
 	}
 
-	public void setColGroups(List<Group> colGroups) {
-		this.colGroups = colGroups;
+	public void setColSupporters(List<Supporter> colSupporters) {
+		this.colSupporters = colSupporters;
 	}
 	
 	
