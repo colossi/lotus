@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../template.xhtml">
+	<ui:define name="index-content">
+
+		<h:head>
+			<meta charset="utf-8"></meta>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+			<title>LOTUS - Caravana</title>
+
+			<h:outputScript name="js/pages/caravan.js" />
+			<h:outputStylesheet name="css/pages/caravan.css" />
+
+		</h:head>
+
+		<body>
+
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Caravana</h1>
+				</section>
+
+				<!-- Main content -->
+
+				<section class="content">
+
+					<h:form id="formtable">
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+						
+
+						<p:commandButton value="Incluir" styleClass="btn btn-primary" id="cbIncluir" update=":form" action="#{crtCaravan.create()}" onsuccess="PF('dlg1').show()" /> 
+						<p:commandButton value="Alterar" styleClass="btn btn-primary" id="cbAlterar" update=":form" onsuccess="PF('dlg1').show()" />
+						<p:commandButton value="Excluir" styleClass="btn btn-primary" id="cbExcluir"	icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+							
+						<p:inputText id="txtBusca" value="#{crtCaravan.searchValue}" />
+						<p:commandButton value="Busca" icon="fa fa-search" id="cbBuscar" action="#{crtCaravan.search()}" update="tabledados" />
+
+
+
+						<p:dataTable value="#{crtCaravan.colCaravans}" selectionMode="single"
+							selection="#{crtCaravan.model}" rowKey="#{entity.id}" var="entity"
+							id="tabledados">
+
+							<p:column>
+								<f:facet name="header">Nome Caravana</f:facet>
+								<h:outputText value="#{grup.caravanName}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Nome Responsável</f:facet>
+								<h:outputText value="#{grup.natural.name}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">CPF</f:facet>
+								<h:outputText value="#{grup.natural.cpf}" />
+							</p:column>,
+							
+							<p:column>
+								<f:facet name="header">RG</f:facet>
+								<h:outputText value="#{grup.natural.rg}" />
+							</p:column>
+							
+							
+
+						</p:dataTable>
+
+					</h:form>
+
+					<!--  AQUI OHHHHH -->
+					<p:dialog width="500" height="300" id="detailDialog" modal="true"
+						header="Detalhe do Cliente" widgetVar="dlg1" appendTo="@(body)">
+						<h:form id="form">
+							<h:panelGrid id="formDetail" columns="2">
+							
+								<h:outputLabel name="lblnameCaravan" value="Nome Caravana" />
+								<p:inputText id="txtnameCaravan" label="lblnameCaravan" value="#{crtCaravan.model.caravanName}" />
+								
+								<h:outputLabel name="lblname" value="Nome" />
+								<p:inputText id="txtname" label="lblname" value="#{crtCaravan.model.natural.name}" />
+								
+								<h:outputLabel name="lblrg" value="RG" />
+								<p:inputText id="txtrg" label="lblrg" value="#{crtCaravan.model.natural.rg}" />
+
+								<h:outputLabel name="lblcpf" value="CPF" />
+								<p:inputText id="txtcpf" label="lblcpf" value="#{crtCaravan.model.natural.cpf}" />
+
+								
+
+
+								<f:facet name="footer">
+									<p:commandButton value="OK" id="cbOK"
+										action="#{crtCaravan.save()}" update=":formtable"
+										onsuccess="PF('dlg1').hide()" />
+									<p:commandButton value="Cancelar" id="cbCancelar"
+										update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+								</f:facet>
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+					<p:dialog width="500" height="50" id="removeDialog" modal="true"
+						header="Confirma Exclusão do registro?" widgetVar="dlgRemove"
+						appendTo="@(body)">
+						<h:form>
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{crtCaravan.remove()}"
+									update=":formtable" value="OK" />
+								<h:commandButton immediate="true" update=":formtable"
+									value="Cancelar" />
+
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+
+				</section>
+				<!-- /.content -->
+			</div>
+
+		</body>
+
+	</ui:define>
+</ui:decorate>
+</html>

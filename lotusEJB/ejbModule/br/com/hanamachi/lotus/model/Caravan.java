@@ -18,7 +18,7 @@ public class Caravan {
 	private String caravanName;
 	
 	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Natural natural;
+	private Natural natural = new Natural();
 	
 	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	private Address address;
