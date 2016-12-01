@@ -42,17 +42,14 @@ public class Staff {
 
 	private boolean tshirtReceived;
 
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Natural natural;
-	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Company company;
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
+	private Natural natural = new Natural();
 	
 	@ManyToMany(cascade={CascadeType.ALL})
 	private List<Group> group = new ArrayList<Group>();
 
-	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Login login;
+	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
+	private Login login = new Login();
 
 	public Long getId() {
 		return Id;
@@ -148,14 +145,6 @@ public class Staff {
 
 	public void setNatural(Natural natural) {
 		this.natural = natural;
-	}
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
 	}
 
 	public Login getLogin() {

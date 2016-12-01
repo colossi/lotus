@@ -17,10 +17,10 @@ public class Caravan {
 
 	private String caravanName;
 	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	private Natural natural = new Natural();
 	
-	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@OneToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	private Address address;
 
 	public Long getId() {

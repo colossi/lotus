@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../template.xhtml">
+	<ui:define name="index-content">
+
+		<h:head>
+			<meta charset="utf-8"></meta>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+			<title>LOTUS - Staff</title>
+
+			<h:outputScript name="js/pages/staff.js" />
+			<h:outputStylesheet name="css/pages/staff.css" />
+
+		</h:head>
+
+		<body>
+
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Staff</h1>
+				</section>
+
+				<!-- Main content -->
+
+				<section class="content">
+
+					<h:form id="formtable">
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+						
+
+						<p:commandButton value="Incluir" styleClass="btn btn-primary" id="cbIncluir" update=":form" action="#{crtStaff.create()}" onsuccess="PF('dlg1').show()" /> 
+						<p:commandButton value="Alterar" styleClass="btn btn-primary" id="cbAlterar" update=":form" onsuccess="PF('dlg1').show()" />
+						<p:commandButton value="Excluir" styleClass="btn btn-primary" id="cbExcluir"	icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+							
+						<p:inputText id="txtBusca" value="#{crtStaff.searchValue}" />
+						<p:commandButton value="Busca" icon="fa fa-search" id="cbBuscar" action="#{crtStaff.search()}" update="tabledados" />
+
+
+
+						<p:dataTable value="#{crtStaff.colStaffs}" selectionMode="single"
+							selection="#{crtStaff.model}" rowKey="#{entity.id}" var="entity"
+							id="tabledados">
+							
+							<p:column>
+								<f:facet name="header">CFP</f:facet>
+								<h:outputText value="#{entity.natural.cpf}" />
+							</p:column>	
+							
+							<p:column>
+								<f:facet name="header">Nome</f:facet>
+								<h:outputText value="#{entity.natural.name}" />
+							</p:column>	
+
+							<p:column>
+								<f:facet name="header">Apelido</f:facet>
+								<h:outputText value="#{entity.nick}" />
+							</p:column>	
+							
+							<p:column>
+								<f:facet name="header">Grupo</f:facet>
+								<h:outputText value="#{entity.group.description}" />
+							</p:column>				
+
+						</p:dataTable>
+
+					</h:form>
+
+					<!--  AQUI OHHHHH -->
+					<p:dialog width="500" height="300" id="detailDialog" modal="true"
+						header="Detalhe do Staff" widgetVar="dlg1" appendTo="@(body)">
+						<h:form id="form">
+							<h:panelGrid id="formDetail" columns="2">
+							
+								<h:outputLabel name="lblNameStaff" value="Nome" />
+								<p:inputText id="txtNameStaff" label="lblNameStaff" value="#{crtStaff.model.natural.name}" />
+								
+								<h:outputLabel name="lblNick" value="Apelido" />
+								<p:inputText id="txtnameStaff" label="lblnameStaff" value="#{crtStaff.model.nick}" />
+								
+								<h:outputLabel name="lblcpf" value="CPF" />
+								<p:inputText id="txtCpf" label="lblcpf" value="#{crtStaff.model.natural.cpf}" />
+								
+								<h:outputLabel name="lblRg" value="RG" />
+								<p:inputText id="txtRg" label="lblRg" value="#{crtStaff.model.natural.rg}" />
+								
+								<p:outputLabel for="popup" value="Aniversário:" />
+        						<p:calendar id="popup" value="#{crtStaff.model.dateOfBirth}" />
+        						
+        						<h:outputLabel name="lblmomName" value="Nome Mãe" />
+								<p:inputText id="txtmomName" label="lblmomName" value="#{crtStaff.model.momName}" />
+								
+								<h:outputLabel name="lbldadName" value="Nome Pai" />
+								<p:inputText id="txtdadName" label="lbldadName" value="#{crtStaff.model.dadName}" />
+								
+								<h:outputLabel name="lblface" value="Facebook" />
+								<p:inputText id="txtface" label="lblface" value="#{crtStaff.model.facebook}" />
+								
+								<h:outputLabel name="lblSkype" value="Skype" />
+								<p:inputText id="txtSkype" label="lblSkype" value="#{crtStaff.model.skype}" />
+								
+								<h:outputLabel name="lblhelpType" value="Tipo de Ajuda" />
+								<p:inputText id="txthelpType" label="lblhelpType" value="#{crtStaff.model.helpType}" />
+								
+								<h:outputLabel name="lblavailableTime" value="Horário Disponivel" />
+								<p:inputText id="txtavailableTime" label="lblavailableTime" value="#{crtStaff.model.availableTime}" />
+								
+								<h:outputLabel name="lbltshirtSize" value="Tamanho Camiseta" />
+								<p:inputText id="txttshirtSize" label="lblavailableTime" value="#{crtStaff.model.tshirtSize}" />
+								
+								<p:outputLabel for="console" value="Camiseta recebida:" />
+						        <p:selectOneRadio id="console" value="#{crtStaff.model.tshirtReceived}">
+						            <f:selectItem itemLabel="Sim" itemValue="true" />
+						            <f:selectItem itemLabel="Não" itemValue="false" />
+						        </p:selectOneRadio>
+						        
+						        <h:outputLabel name="lblGroup" value="Grupo" />	
+								<p:selectOneMenu id="cbGroup" value="#{crtStaff.model.group}" converter="#{Group}" style="width:100px">
+										 <f:selectItem itemLabel="Selecione" itemValue="" />
+										<f:selectItems value="#{crtStaff.getColGroup()}" var="item" itemLabel="#{item.description}" itemValue="#{item}"/>
+								</p:selectOneMenu>
+						        
+						        
+								
+								
+								
+								
+								
+								
+        						
+        						
+        						
+        						
+															
+
+
+								<f:facet name="footer">
+									<p:commandButton value="OK" id="cbOK"
+										action="#{crtStaff.save()}" update=":formtable"
+										onsuccess="PF('dlg1').hide()" />
+									<p:commandButton value="Cancelar" id="cbCancelar"
+										update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+								</f:facet>
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+					<p:dialog width="500" height="50" id="removeDialog" modal="true"
+						header="Confirma Exclusão do registro?" widgetVar="dlgRemove"
+						appendTo="@(body)">
+						<h:form>
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{crtStaff.remove()}"
+									update=":formtable" value="OK" />
+								<h:commandButton immediate="true" update=":formtable"
+									value="Cancelar" />
+
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+
+				</section>
+				<!-- /.content -->
+			</div>
+
+		</body>
+
+	</ui:define>
+</ui:decorate>
+</html>

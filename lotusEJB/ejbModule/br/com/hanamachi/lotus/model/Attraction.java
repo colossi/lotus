@@ -14,11 +14,11 @@ public class Attraction {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	@JoinColumn(name="natural_id")
 	private Natural natural;
 	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	@JoinColumn(name="company_id")
 	private Company company;
 	

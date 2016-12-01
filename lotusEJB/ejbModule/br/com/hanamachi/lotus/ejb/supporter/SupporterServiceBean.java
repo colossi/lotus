@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.hanamachi.lotus.ejb.defalt.LotusServiceBean;
-import br.com.hanamachi.lotus.model.Group;
 import br.com.hanamachi.lotus.model.Supporter;
 
 @Stateless
