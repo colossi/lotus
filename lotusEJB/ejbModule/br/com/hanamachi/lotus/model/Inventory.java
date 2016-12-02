@@ -21,11 +21,11 @@ public class Inventory {
 	@OneToMany(cascade={CascadeType.ALL})
 	private Collection<Item> itens;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
