@@ -48,7 +48,7 @@ public class SupplierServiceBean extends LotusServiceBean<Supplier> implements S
 	}
 
 	@Override
-	public List<Supplier> getClienteByDescription(String description) {
+	public List<Supplier> getSuporterByDescription(String description) {
 		Query q = em.createQuery("Select g from Supplier g where g.description like %" + description + "%");
 		return q.getResultList();
 	}

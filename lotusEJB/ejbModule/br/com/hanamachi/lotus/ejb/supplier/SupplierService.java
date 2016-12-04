@@ -10,6 +10,8 @@ public interface SupplierService {
 
 	public void delete(Supplier c);
 
-	public List<Supplier> getClienteByDescription(String description);
+	public List<Supplier> getSuporterByDescription(String description);
+
+	public List<Supplier> findAll();
 
 }

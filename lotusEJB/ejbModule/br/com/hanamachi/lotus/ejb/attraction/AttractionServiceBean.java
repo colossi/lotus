@@ -48,7 +48,7 @@ public class AttractionServiceBean extends LotusServiceBean<Attraction> implemen
 	}
 
 	@Override
-	public List<Attraction> getClienteByDescription(String description) {
+	public List<Attraction> getAttractionByDescription(String description) {
 		Query q = em.createQuery("Select g from Attraction g where g.description like %" + description + "%");
 		return q.getResultList();
 	}

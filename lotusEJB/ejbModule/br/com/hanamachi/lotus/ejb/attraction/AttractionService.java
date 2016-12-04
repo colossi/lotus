@@ -10,6 +10,8 @@ public interface AttractionService {
 
 	 public void delete(Attraction c);
 
-	 public List<Attraction> getClienteByDescription(String description);
+	 public List<Attraction> getAttractionByDescription(String description);
+
+	public List<Attraction> findAll();
 
 }

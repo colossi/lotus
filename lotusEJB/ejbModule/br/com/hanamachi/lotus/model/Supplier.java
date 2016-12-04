@@ -15,7 +15,7 @@ public class Supplier{
 	private Long id;
 
 	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-	private Company company;
+	private Company company = new Company();
 
 	public Long getId() {
 		return id;

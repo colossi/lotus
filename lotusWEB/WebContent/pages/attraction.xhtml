@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../template.xhtml">
+	<ui:define name="index-content">
+
+		<h:head>
+			<meta charset="utf-8"></meta>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+			<title>LOTUS - Atração</title>
+
+			<h:outputScript name="js/pages/attraction.js" />
+			<h:outputStylesheet name="css/pages/attraction.css" />
+
+		</h:head>
+
+		<body>
+
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Atração</h1>
+				</section>
+
+				<!-- Main content -->
+
+				<section class="content">
+
+					<h:form id="formtable">
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+						
+
+						<p:commandButton value="Incluir" styleClass="btn btn-primary" id="cbIncluir" update=":form" action="#{crtAttraction.create()}" onsuccess="PF('dlg1').show()" /> 
+						<p:commandButton value="Alterar" styleClass="btn btn-primary" id="cbAlterar" update=":form" onsuccess="PF('dlg1').show()" />
+						<p:commandButton value="Excluir" styleClass="btn btn-primary" id="cbExcluir"	icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+							
+						<p:inputText id="txtBusca" value="#{crtAttraction.searchValue}" />
+						<p:commandButton value="Busca" icon="fa fa-search" id="cbBuscar" action="#{crtAttraction.search()}" update="tabledados" />
+
+
+
+						<p:dataTable value="#{crtAttraction.colAttraction}" selectionMode="single"
+							selection="#{crtAttraction.model}" rowKey="#{entity.id}" var="entity" id="tabledados">
+
+							<p:column>
+								<f:facet name="header">CFP</f:facet>
+								<h:outputText value="#{entity.natural.cpf}" />
+							</p:column>	
+							
+							<p:column>
+								<f:facet name="header">Nome</f:facet>
+								<h:outputText value="#{entity.natural.name}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">E-mail</f:facet>
+								<h:outputText value="#{entity.natural.email}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Telefone</f:facet>
+								<h:outputText value="#{entity.natural.phone}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">Celular</f:facet>
+								<h:outputText value="#{entity.natural.celphone}" />
+							</p:column>
+							
+							
+
+						</p:dataTable>
+
+					</h:form>
+
+					<!--  AQUI OHHHHH -->
+					<p:dialog width="500" height="300" id="detailDialog" modal="true"
+						header="Detalhe do Cliente" widgetVar="dlg1" appendTo="@(body)">
+						<h:form id="form">
+							<h:panelGrid id="formDetail" columns="2">
+								
+								<h:outputLabel name="lblNameStaff" value="Nome" />
+								<p:inputText id="txtNameStaff" label="lblNameStaff" value="#{crtAttraction.model.natural.name}" />
+								
+								<h:outputLabel name="lblcpf" value="CPF" />
+								<p:inputText id="txtCpf" label="lblcpf" value="#{crtAttraction.model.natural.cpf}" />
+								
+								<h:outputLabel name="lblRg" value="RG" />
+								<p:inputText id="txtRg" label="lblRg" value="#{crtAttraction.model.natural.rg}" />
+								
+								<h:outputLabel name="lblPhone" value="Telefone" />
+								<p:inputText id="txtPhone" label="lblPhone" value="#{crtAttraction.model.natural.phone}" />
+								
+								<h:outputLabel name="lblCellphone" value="Celular" />
+								<p:inputText id="txtCellphone" label="lblCellphone" value="#{crtAttraction.model.natural.celphone}" />
+								
+
+
+								<f:facet name="footer">
+									<p:commandButton value="OK" id="cbOK"
+										action="#{crtAttraction.save()}" update=":formtable:tabledados"
+										onsuccess="PF('dlg1').hide()" />
+									<p:commandButton value="Cancelar" id="cbCancelar"
+										update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+								</f:facet>
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+					<p:dialog width="500" height="50" id="removeDialog" modal="true"
+						header="Confirma Exclusão do registro?" widgetVar="dlgRemove"
+						appendTo="@(body)">
+						<h:form>
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{crtAttraction.remove()}"
+									update=":formtable" value="OK" />
+								<h:commandButton immediate="true" update=":formtable"
+									value="Cancelar" />
+
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+
+				</section>
+				<!-- /.content -->
+			</div>
+
+		</body>
+
+	</ui:define>
+</ui:decorate>
+</html>

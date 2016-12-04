@@ -16,11 +16,11 @@ public class Attraction {
 	
 	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	@JoinColumn(name="natural_id")
-	private Natural natural;
+	private Natural natural = new Natural();
 	
 	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST})
 	@JoinColumn(name="company_id")
-	private Company company;
+	private Company company = new Company();
 	
 	public Long getId() {
 		return id;

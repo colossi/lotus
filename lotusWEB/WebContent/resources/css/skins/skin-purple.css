@@ -148,3 +148,11 @@
 .logo-mini img {
     width: 45px;
 }
+
+form.sidebar-form {
+    display: none !important;
+}
+
+.navbar-custom-menu {
+    display: none !important;
+}
